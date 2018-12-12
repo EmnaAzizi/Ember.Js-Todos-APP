@@ -1,5 +1,77 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
+<div class="cont_principal">
+    <div class="cont_centrar">
+        <form {{action "grabTodo" on="submit"}}>
+            <div class="cont_todo_list_top">
+                <div class="cont_titulo_cont">
+
+                    {{input type="text" id="myInput" value=newTodo size="30" placeholder=" Add new goal ..."}}
+                </div>
+                <div class="cont_add_titulo_cont">
+
+                    <button type="submit" class="btn btn-info">
+                        <span class="glyphicon glyphicon-plus"></span>
+
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+        <div class="cont_princ_lists">
+            <ul>
+
+                {{#each model as |todo|}}
+
+
+                <li class="list_shopping li_num_0_1">
+
+                    <div class="col_md_1_list">
+
+                        <label class="container">
+
+                            <input type="checkbox" id="checkbox-toggle" name="toggleCheckbox" checked={{todo.done}}
+                                {{action "toggleCheckBox" todo.id  on="change"}} />
+                            <span class="checkmark"></span>
+                        </label>
+
+                    </div>
+                    <div class="col_md_2_list">
+
+                        <div class={{if todo.done "strike" }}>
+                            {{todo.title}}
+                        </div>
+                    </div>
+                    <div class="col_md_3_list">
+                        <div class="cont_text_date">
+                            <button type="button" {{action "deleteTodo" todo.id on="click"}} class="close" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
 
 {{outlet}}
